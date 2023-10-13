@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://djqizrxa6f10j.cloudfront.net/ecwid-sdk/js/1.3.0/ecwid-app.js"></script>
+	<title>Back to top Button</title>
+	<script>
+		let btncolor = "#0a1c2e";
+		let textvalue = "Back to top";
+		let opacityvalue = "0.5";
+		let widthvalue = "100 px";
+		let heightvalue = "70 px";
+		let borderrad = "30 px";
+	</script>>
+</head>
+<body>
+	<script type="text/javascript">
+			EcwidApp.init({
+	  			app_id: "back-to-top-button-dev", // use your application client_id
+				autoloadedflag: true, 
+				autoheight: true
+			});
+	</script>
+	<h1 style="font-family: Lato, sans-serif; color: #0a1c2e; display: flex; justify-content: center;">Settings</h1>
+	<div style = "display: flex; justify-content: center;">
+		<div style = "display: inline-block; margin: 30px;">	
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Choose color</h3>
+			
+			<input type="color" id="picker" oninput="colorchange()" value = "#7a8aa3">
+			
+			<script type="text/javascript">
+				console.log("DONE");
+			function colorchange() {
+				fun = document.getElementById("myBtn");
+				picker = document.getElementById("picker");
+				picker.addEventListener("picker", colorchange);
+				fun.style.backgroundColor = picker.value;
+				btncolor = picker.value;
+			}
+			</script>
+		
+		</div>
+
+		<div style = "display: inline-block; margin: 30px;">
+			
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Input button text:</h3>
+			
+			<input type="text" id="butntext" placeholder="Back to top" value="Back to top" oninput="textchange()">
+			
+			<script type="text/javascript">
+			function textchange() {
+				inptxt = document.getElementById("butntext");
+				fun = document.getElementById("myBtn");
+				inptxt.addEventListener("inptxt", textchange);
+				fun.textContent = inptxt.value;
+				textvalue = inptxt.value;
+			}
+			</script>
+		
+		</div>
+
+		<div style = "display: inline-block; margin: 30px;">
+			
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Set opacity</h3>
+			
+			<input id="setopacity" type="range" class="form-range" min="0" max="1" step="0.01" value="0.5" oninput="setop()">
+			
+			<script type="text/javascript">
+			function setop() {
+				opacityset = document.getElementById("setopacity");
+				fun = document.getElementById("myBtn");
+				opacityset.addEventListener("opacityset", setop);
+				fun.style.opacity = opacityset.value;
+				opacityvalue = opacityset.value;
+			}
+		</script>
+		</div>
+	</div>
+	<div style = "display: flex; justify-content: center;">	
+		<div style = "display: inline-block; margin: 30px;">
+			
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Set width</h3>
+			
+			<input id="setsize" type="range" class="form-range" min="30" max="300" step="10" value="100" oninput="setsz()">
+			
+			<script type="text/javascript">
+			function setsz() {
+				sizest = document.getElementById("setsize");
+				fun = document.getElementById("myBtn");
+				sizest.addEventListener("sizest", setsz);
+				fun.style.width = sizest.value + "px";
+				widthvalue = sizest.value + "px";
+			}
+		</script>
+		</div>
+
+		<div style = "display: inline-block; margin: 30px;">
+			
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Set height</h3>
+			
+			<input id="setheight" type="range" class="form-range" min="20" max="160" step="5" value="70" oninput="sethg()">
+			
+			<script type="text/javascript">
+			function sethg() {
+				hgset = document.getElementById("setheight");
+				fun = document.getElementById("myBtn");
+				hgset.addEventListener("hgset", sethg);
+				fun.style.height = hgset.value + "px";
+				heightvalue = hgset.value + "px";
+			}
+		</script>
+		</div>
+
+		<div style = "display: inline-block; margin: 30px;">
+			
+			<h3 style="font-family: Lato, sans-serif;  color: #0a1c2e">Set form</h3>
+			
+			<input id="setfor" type="range" min="0" class="form-range" max="100" step="3" value="30" oninput="setform()">
+			
+			<script type="text/javascript">
+			function setform() {
+				setf = document.getElementById("setfor");
+				fun = document.getElementById("myBtn");
+				setf.addEventListener("setf", setform);
+				fun.style.borderRadius = setf.value + "px";
+				borderrad = setf.value + "px";
+			}
+		</script>
+		</div>
+	</div>
+	
+	<div style="display: flex; justify-content: center;">
+		
+		<button id="myBtn" title="Back to top" style = "display: inline-block;">Back to top</button>
+	
+	</div>
+	
+	<div style = "display: flex; justify-content: center;">
+		
+		<button type="submit" type="button" class="btn btn-primary" style="margin:30px;" onclick="save()">Submit</button>
+		<script type="text/javascript">
+		function save() {
+			var mass = {"btncolor":btncolor , "textvalue":textvalue, "opacityvalue":opacityvalue, "widthvalue":widthvalue, "heightvalue":heightvalue, "borderrad":borderrad};
+			data = JSON.stringify(mass)	
+			EcwidApp.setAppPublicConfig(data, function conf(){
+			  var saved = document.createElement('div');
+			  saved.innerHTML = '<div id = "savedalert" class="alert alert-success" role="alert">Saved!</div>';
+			  document.body.append(saved);
+			  console.log('Public app config saved!');
+			  setTimeout(function(){
+			  	document.getElementById('savedalert').style.display = 'none';
+			  }, 5000);
+		});};
+		</script>
+
+		
+		<style type="text/css">
+			#myBtn {
+				margin-top: 30px;
+				border: 0;
+				font-family: Lato, sans-serif;
+				opacity: 0.6;
+				width: 100px;
+				height: 70px;
+				border-radius: 30px;
+				background-color: #7a8aa3;
+			}
+		</style>
+	
+	</div>
+
+</body>
+</html>
