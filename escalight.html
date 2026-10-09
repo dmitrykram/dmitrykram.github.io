@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escalight</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&display=swap');
+
+:root{
+  --bg:#f7f8fa;
+  --surface:#ffffff;
+  --surface-soft:#f1f4f7;
+  --border:#dfe4ea;
+  --border-strong:#cbd2da;
+  --text:#171b24;
+  --muted:#667085;
+  --accent:#0077ff;
+  --accent-dark:#005fcc;
+  --accent-soft:#e8f2ff;
+  --navy:#101828;
+  --green:#16a34a;
+  --orange:#ea580c;
+  --shadow:0 20px 60px rgba(16,24,40,.08);
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 85% 0%,rgba(0,119,255,.08),transparent 28%),
+    linear-gradient(180deg,#fff 0,#f7f8fa 42%,#f7f8fa 100%);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  width:min(1400px,calc(100% - 56px));
+  margin:auto;
+  padding:28px 0 70px;
+}
+
+/* Brand bar */
+
+.brandbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:4px 0 42px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--navy);
+  text-decoration:none;
+}
+
+.brand-mark{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:var(--navy);
+  box-shadow:0 8px 20px rgba(16,24,40,.14);
+}
+
+.brand-mark svg{
+  width:22px;
+  height:22px;
+}
+
+.brand-name{
+  font-family:"Inter Tight",Inter,sans-serif;
+  font-size:21px;
+  font-weight:800;
+  letter-spacing:-.045em;
+}
+
+.tool-label{
+  padding:7px 11px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  color:var(--muted);
+  background:rgba(255,255,255,.72);
+  font-size:12px;
+  font-weight:600;
+}
+
+/* Hero */
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 11px;
+  border:1px solid #cfe2fb;
+  border-radius:999px;
+  color:#1769b0;
+  background:var(--accent-soft);
+  font-size:12px;
+  font-weight:600;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 4px rgba(22,163,74,.1);
+}
+
+h1{
+  margin:17px 0 9px;
+  max-width:800px;
+  font-family:"Inter Tight",Inter,sans-serif;
+  font-size:clamp(40px,6vw,68px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:800;
+  color:var(--navy);
+}
+
+.subtitle{
+  margin:0;
+  max-width:680px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* Meta */
+
+.meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:24px;
+  margin:13px 3px 14px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:500;
+}
+
+.loading{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.spinner{
+  width:14px;
+  height:14px;
+  border:2px solid #d9dee6;
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Table */
+
+.table{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+}
+
+.scroll{overflow:auto}
+
+table{
+  width:100%;
+  min-width:850px;
+  border-collapse:collapse;
+}
+
+thead{
+  background:#f8fafc;
+}
+
+th{
+  padding:14px 18px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  color:#667085;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+td{
+  padding:17px 18px;
+  border-bottom:1px solid #edf0f3;
+  color:#344054;
+  font-size:14px;
+  line-height:1.45;
+  vertical-align:middle;
+}
+
+tbody tr{
+  transition:background .15s ease;
+}
+
+tbody tr:hover{
+  background:#f8fbff;
+}
+
+tr:last-child td{border-bottom:0}
+
+.id{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#1769b0;
+  font-size:13px;
+  font-weight:600;
+}
+
+.summary{
+  max-width:540px;
+  color:#1d2939;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#f2f4f7;
+  color:#667085;
+  font-size:12px;
+  font-weight:600;
+}
+
+.status:before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:currentColor;
+}
+
+.status.open{
+  color:#1769b0;
+  background:#e8f2ff;
+}
+
+.status.escalated{
+  color:var(--orange);
+  background:#fff1e8;
+}
+
+.status.resolved,
+.status.closed,
+.status.done{
+  color:var(--green);
+  background:#eaf8ef;
+}
+
+.jira{
+  color:#006fe6;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.jira:hover{
+  color:var(--accent-dark);
+  text-decoration:underline;
+}
+
+.conversation-link{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:8px;
+  color:#344054;
+  background:#f2f4f7;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
+  transition:.15s ease;
+}
+
+.conversation-link:hover{
+  color:var(--accent-dark);
+  background:var(--accent-soft);
+}
+
+/* Empty */
+
+.empty{
+  padding:72px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.empty b{
+  display:block;
+  margin-bottom:6px;
+  color:var(--navy);
+  font-size:15px;
+}
+
+/* Responsive */
+
+
+/* Account / Salesforce-style view */
+
+.account-card{
+  overflow:hidden;
+  margin:4px 0 28px;
+  border:1px solid #cfd6de;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(16,24,40,.08);
+}
+
+.account-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:24px 30px 22px;
+  background:linear-gradient(180deg,#f8fafc 0%,#f0f3f6 100%);
+  border-bottom:1px solid #d9dee5;
+}
+
+.account-kicker{
+  color:#667085;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.account-title{
+  margin:0;
+  color:#111827;
+  font-family:"Inter Tight",Inter,sans-serif;
+  font-size:28px;
+  line-height:1.1;
+  letter-spacing:-.035em;
+  font-weight:700;
+}
+
+.account-id{
+  margin-top:6px;
+  color:#667085;
+  font-size:13px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+.account-badge{
+  flex:0 0 auto;
+  padding:9px 15px;
+  border-radius:9px;
+  background:#8b939c;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+}
+
+.account-details{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:1px;
+  background:#e5e7eb;
+}
+
+.detail-item{
+  padding:16px 22px;
+  background:#fff;
+}
+
+.detail-label{
+  display:block;
+  margin-bottom:5px;
+  color:#98a2b3;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+
+.detail-item strong{
+  color:#1d2939;
+  font-size:14px;
+}
+
+.live-text{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#16803c !important;
+}
+
+.live-dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#16a34a;
+  box-shadow:0 0 0 3px rgba(22,163,74,.10);
+}
+
+.assets-section,
+.issues-section{
+  margin-top:24px;
+}
+
+.section-title-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  min-height:42px;
+}
+
+.section-title-row h2{
+  margin:0;
+  color:#111827;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:-.025em;
+}
+
+.section-title-row .chevron{
+  display:inline-block;
+  margin-right:7px;
+  font-size:20px;
+  transform:translateY(-1px);
+}
+
+.section-title-row .count,
+.result-count{
+  color:#8a949f;
+  font-weight:600;
+}
+
+.expand-btn{
+  position:absolute;
+  left:calc(50% + 115px);
+  border:0;
+  padding:4px 8px;
+  background:transparent;
+  color:#f2a900;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.assets-card{
+  margin:5px 0 28px;
+  border:1px solid #cbd3db;
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(16,24,40,.06);
+}
+
+.asset-row{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-height:54px;
+  padding:0 22px;
+  border-bottom:1px solid #e5e7eb;
+  color:#111827;
+  font-size:18px;
+}
+
+.asset-row:last-child{border-bottom:0}
+
+.asset-row:nth-child(odd){background:#f4f6f8}
+.asset-row:nth-child(even){background:#fff}
+
+/* asset chevrons are styled above */
+
+.asset-name{
+  min-width:0;
+  font-weight:500;
+}
+
+.asset-name strong{
+  font-weight:700;
+}
+
+.copy-icon{
+  color:#98a2b3;
+  font-size:19px;
+  line-height:1;
+}
+
+.asset-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#159447;
+  font-size:16px;
+}
+
+.asset-icon{
+  color:#111827;
+  font-size:18px;
+  margin-left:2px;
+}
+
+.issues-title{
+  justify-content:space-between;
+  padding:0 3px;
+}
+
+.issues-title h2{
+  font-size:20px;
+}
+
+.result-count{
+  font-size:13px;
+}
+
+.issues-section .meta{
+  min-height:10px;
+  margin:0 3px 12px;
+}
+
+
+.account-kicker{display:none}
+
+.account-head{
+  align-items:flex-start;
+}
+
+.account-head > div:first-child{
+  min-width:0;
+}
+
+.salesforce-link{
+  display:inline-block;
+  margin-top:11px;
+  color:#0b5cab;
+  font-size:13px;
+  font-weight:650;
+  text-decoration:none;
+}
+.salesforce-link:hover{text-decoration:underline}
+
+.section-title-left{
+  justify-content:flex-start;
+  padding-left:3px;
+}
+
+.section-title-left .expand-btn{
+  position:static;
+  margin-left:12px;
+}
+
+.section-toggle,
+.asset-chevron{
+  border:0;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  font:inherit;
+}
+
+.section-toggle{
+  color:#111827;
+  width:22px;
+  text-align:center;
+  margin-right:4px;
+}
+
+.assets-card{
+  width:100%;
+}
+
+.asset-row{
+  cursor:pointer;
+}
+
+.asset-chevron{
+  width:18px;
+  flex:0 0 18px;
+  color:#111827;
+  font-size:25px;
+  line-height:1;
+  transition:transform .15s ease;
+}
+
+.asset-chevron[aria-expanded="true"]{
+  transform:rotate(90deg);
+}
+
+.asset-details{
+  display:none;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  padding:0;
+  background:#e5e7eb;
+}
+
+.asset-details.open{
+  display:grid;
+}
+
+.asset-details > div{
+  padding:12px 18px;
+  background:#fff;
+}
+
+.asset-details span{
+  display:block;
+  color:#98a2b3;
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:3px;
+}
+
+.asset-details strong{
+  font-size:13px;
+  color:#1d2939;
+}
+
+.copy-icon{
+  margin-left:auto;
+}
+
+
+/* Account metadata: three balanced columns */
+.account-meta,
+.account-details,
+.account-info-grid{
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media(max-width:700px){
+  .account-meta,
+  .account-details,
+  .account-info-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+@media(max-width:700px){
+  .container{
+    width:calc(100% - 24px);
+    padding:20px 0 45px;
+  }
+
+  .brandbar{
+    padding-bottom:32px;
+  }
+
+  .tool-label{display:none}
+
+  .account-head{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:20px;
+  }
+
+  .account-title{font-size:25px}
+
+  .account-details{
+    grid-template-columns:1fr;
+  }
+
+  .section-title-row{
+    justify-content:flex-start;
+  }
+
+  .expand-btn{
+    position:static;
+    margin-left:10px;
+  }
+
+  .asset-row{
+    padding:0 14px;
+    font-size:16px;
+  }
+}
+
+/* Account metadata: restore the SMB column */
+.account-details{
+  grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+}
+@media(max-width:700px){
+  .account-details{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* Expandable issue rows */
+.issue-expand-cell{
+  width:42px;
+  padding-left:14px !important;
+  padding-right:0 !important;
+  text-align:center;
+}
+.issue-chevron{
+  width:22px;
+  height:22px;
+  border:0;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  color:#162033;
+  font-size:24px;
+  line-height:20px;
+  transition:transform .15s ease;
+}
+.issue-chevron[aria-expanded="true"]{
+  transform:rotate(90deg);
+}
+.issue-detail-row td{
+  background:#f7f9fc;
+  border-top:0 !important;
+  padding:0 18px 16px 56px !important;
+}
+.issue-detail{
+  border-left:3px solid #d7e0ec;
+  padding:12px 16px;
+}
+.issue-detail-label{
+  display:block;
+  margin-bottom:5px;
+  color:#8b98aa;
+  font-size:10px;
+  font-weight:750;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.issue-detail-value{
+  color:#344054;
+  font-size:13px;
+  line-height:1.55;
+  white-space:pre-wrap;
+}
+
+/* Expandable G-column control */
+.issue-expand-cell{
+  width:44px;
+  min-width:44px;
+  padding:14px 4px 14px 12px !important;
+  text-align:center;
+}
+.issue-chevron{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  padding:0;
+  cursor:pointer;
+  color:#162033;
+  font-size:26px;
+  line-height:1;
+  transition:background .15s ease, transform .15s ease;
+}
+.issue-chevron:hover{
+  background:#eef4fb;
+}
+.issue-chevron[aria-expanded="true"]{
+  transform:rotate(90deg);
+}
+
+/* Escalight brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.brand-logo{
+  width:40px;
+  height:40px;
+  display:block;
+  flex:0 0 40px;
+}
+.brand-name{
+  font-family:"Inter Tight",Inter,sans-serif;
+  font-size:24px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:-.055em;
+  color:#101828;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="brandbar">
+    <div class="brand" aria-label="Escalight">
+      <svg class="brand-logo" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+        <path d="M10 21.5V42l22 15 22-15V21.5L32 7 10 21.5Z"
+              fill="none" stroke="#ed1c24" stroke-width="5.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 21.5 32 36.5 54 21.5"
+              fill="none" stroke="#ed1c24" stroke-width="5.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 28.5 32 36.5 43 28.5"
+              fill="none" stroke="#ed1c24" stroke-width="5.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 28.5v11L32 47l11-7.5v-11"
+              fill="none" stroke="#ed1c24" stroke-width="5.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-name">Escalight</span>
+    </div>
+    <span class="tool-label">Internal tool</span>
+  </div>
+
+  <section class="account-card">
+    <div class="account-head">
+      <div>
+        <div class="account-kicker"></div>
+        <h1 class="account-title">Kram Test Account</h1>
+        <div class="account-id">#001G00000K7R4M2QX</div>
+        <a class="salesforce-link" href="https://example.salesforce.com/lightning/r/Account/001G00000K7R4M2QX/view" target="_blank" rel="noopener noreferrer">
+          Open in Salesforce ↗
+        </a>
+      </div>
+      
+    </div>
+
+    <div class="account-details">
+      <div class="detail-item">
+        <span class="detail-label">Industry</span>
+        <strong>Apparel</strong>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Tier</span>
+        <strong>SMB Merchant</strong>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Customer status</span>
+        <strong class="live-text"><span class="live-dot"></span>Live</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="assets-section">
+    <div class="section-title-row section-title-left">
+      <h2><button class="section-toggle" id="assetsToggle" aria-expanded="true">⌄</button> Active Assets <span class="count">(4)</span></h2>
+      <button class="expand-btn" id="expandAssets">EXPAND ALL</button>
+    </div>
+
+    <div class="assets-card" id="assetsCard">
+      <div class="asset-row">
+        <button class="asset-chevron" aria-expanded="false" aria-label="Expand E-Series">›</button>
+        <div class="asset-name">E-Series <strong>138942751</strong></div>
+        <span class="copy-icon" title="Copy ID">▣</span>
+      </div>
+      <div class="asset-details">
+        <div><span>Asset type</span><strong>E-Series</strong></div>
+        <div><span>Asset ID</span><strong>138942751</strong></div>
+        <div><span>Status</span><strong>Active</strong></div>
+      </div>
+
+      <div class="asset-row">
+        <button class="asset-chevron" aria-expanded="false" aria-label="Expand X-Series">›</button>
+        <div class="asset-name">X-Series <strong>kramtest</strong></div>
+        <span class="copy-icon" title="Copy ID">▣</span>
+      </div>
+      <div class="asset-details">
+        <div><span>Asset type</span><strong>X-Series</strong></div>
+        <div><span>Asset ID</span><strong>kramtest</strong></div>
+        <div><span>Status</span><strong>Active</strong></div>
+      </div>
+      <div class="asset-row">
+        <button class="asset-chevron" aria-expanded="false" aria-label="Expand K-Series">›</button>
+        <div class="asset-name">K-Series <strong>2032060696887298</strong></div>
+        <span class="copy-icon" title="Copy ID">▣</span>
+      </div>
+      <div class="asset-details">
+        <div><span>Asset type</span><strong>K-Series</strong></div>
+        <div><span>Asset ID</span><strong>2032060696887298</strong></div>
+        <div><span>Status</span><strong>Active</strong></div>
+      </div>
+      <div class="asset-row">
+        <button class="asset-chevron" aria-expanded="false" aria-label="Expand Golf">›</button>
+        <div class="asset-name">Golf <strong>6959</strong></div>
+        <span class="copy-icon" title="Copy ID">▣</span>
+      </div>
+      <div class="asset-details">
+        <div><span>Asset type</span><strong>Golf</strong></div>
+        <div><span>Asset ID</span><strong>6959</strong></div>
+        <div><span>Status</span><strong>Active</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="issues-section">
+    <div class="section-title-row issues-title">
+      <h2><button class="section-toggle" id="issuesToggle" aria-expanded="true">⌄</button> Issues &amp; Escalations</h2>
+      <span id="count" class="result-count">Loading…</span>
+    </div>
+
+    <div class="meta">
+      <span></span>
+      <span id="loading" class="loading"><span class="spinner"></span>Loading data</span>
+    </div>
+  <div class="table">
+    <div class="scroll">
+      <table>
+        <thead><tr id="head"></tr></thead>
+        <tbody id="body"></tbody>
+      </table>
+    </div>
+    <div id="empty" class="empty" style="display:none"><b>No results found</b>Try another search query.</div>
+  </div>
+</div>
+
+<script>
+const SHEET_ID="1LOXkRcKpIq3ZB-1JKuyaDes78tOmMShDDfxIRYpeuRA";
+const GID="0";
+let headers=[], rows=[];
+
+function renderHeaders(){
+  const head=document.getElementById("head");
+  head.innerHTML="";
+
+  if(headers.some(h=>h.__expand)){
+    const th=document.createElement("th");
+    th.className="issue-expand-cell";
+    th.setAttribute("aria-label","Expand issue details");
+    head.appendChild(th);
+  }
+
+  headers.filter(h=>!h.__expand).forEach(h=>{
+    const th=document.createElement("th");
+    th.textContent=h.label;
+    head.appendChild(th);
+  });
+}
+
+function render(data){
+  const body=document.getElementById("body");
+  const empty=document.getElementById("empty");
+  body.innerHTML="";
+  empty.style.display=data.length?"none":"block";
+
+  const visibleHeaders=headers.filter(h=>!h.__expand);
+  const expandColumn=headers.findIndex(h=>h.__expand);
+  const hasExpandable=expandColumn !== -1;
+
+  data.forEach((row,rowIndex)=>{
+    const tr=document.createElement("tr");
+    tr.dataset.rowIndex=rowIndex;
+
+    if(hasExpandable){
+      const td=document.createElement("td");
+      td.className="issue-expand-cell";
+
+      const button=document.createElement("button");
+      button.className="issue-chevron";
+      button.setAttribute("aria-expanded","false");
+      button.setAttribute("aria-label","Expand issue details");
+      button.textContent="›";
+      td.appendChild(button);
+      tr.appendChild(td);
+
+      button.addEventListener("click",()=>{
+        const detailRow=tr.nextElementSibling;
+        const open=button.getAttribute("aria-expanded")==="true";
+        button.setAttribute("aria-expanded",String(!open));
+        detailRow.style.display=open?"none":"table-row";
+      });
+    }
+
+    visibleHeaders.forEach(header=>{
+      const i=header.index;
+      const td=document.createElement("td");
+      const value=String(row[i] ?? "");
+      const h=String(header.label).trim().toLowerCase();
+
+      if(h==="id" || i===0){
+        td.className="id";
+        td.textContent=value||"—";
+      }else if(/summary|title|description/i.test(h)){
+        td.className="summary";
+        td.textContent=value||"—";
+      }else if(/status/i.test(h)){
+        const s=document.createElement("span");
+        s.className="status "+value.toLowerCase().replace(/\s+/g,"-");
+        s.textContent=value||"—";
+        td.appendChild(s);
+      }else if(i===3 || /jira|ticket|issue/i.test(h)){
+        if(value){
+          const a=document.createElement("a");
+          a.className="jira";
+          a.href=value.startsWith("http")
+            ? value
+            : "https://lightspeedhq.atlassian.net/browse/"+value;
+          a.target="_blank";
+          a.rel="noopener noreferrer";
+          a.textContent=compactTicket(value);
+          a.title=value;
+          td.appendChild(a);
+        }else td.textContent="—";
+      }else if(i===4 || /conversation/i.test(h)){
+        if(value){
+          const a=document.createElement("a");
+          a.className="conversation-link";
+          a.href=value;
+          a.target="_blank";
+          a.rel="noopener noreferrer";
+          a.textContent=conversationLabel(value);
+          a.title=value;
+          td.appendChild(a);
+        }else td.textContent="—";
+      }else{
+        td.textContent=value||"—";
+      }
+
+      tr.appendChild(td);
+    });
+
+    body.appendChild(tr);
+
+    if(hasExpandable){
+      const detailRow=document.createElement("tr");
+      detailRow.className="issue-detail-row";
+      detailRow.style.display="none";
+
+      const detailCell=document.createElement("td");
+      detailCell.colSpan=visibleHeaders.length+1;
+
+      const detail=document.createElement("div");
+      detail.className="issue-detail";
+
+      const label=document.createElement("span");
+      label.className="issue-detail-label";
+      label.textContent=String(headers[expandColumn].label || "Details");
+
+      const content=document.createElement("div");
+      content.className="issue-detail-value";
+      content.textContent=String(row[headers[expandColumn].index] ?? "").trim()
+        || "No additional information.";
+
+      detail.appendChild(label);
+      detail.appendChild(content);
+      detailCell.appendChild(detail);
+      detailRow.appendChild(detailCell);
+      body.appendChild(detailRow);
+    }
+  });
+
+  document.getElementById("count").textContent =
+    `${data.length} result${data.length===1?"":"s"}`;
+}
+
+function compactTicket(value){
+  const text=String(value).trim();
+  const match=text.match(/\/browse\/([^/?#]+)/i);
+  if(match) return decodeURIComponent(match[1]);
+
+  const key=text.match(/\b[A-Z][A-Z0-9]+-\d+\b/i);
+  return key ? key[0].toUpperCase() : text;
+}
+
+function conversationLabel(value){
+  try{
+    const url=new URL(String(value).trim());
+    const host=url.hostname.toLowerCase().replace(/^www\./,"");
+
+    if(host.includes("intercom")) return "intercom";
+    if(host.includes("zendesk")) return "zendesk";
+    if(host.includes("hubspot")) return "hubspot";
+    if(host.includes("salesforce")) return "salesforce";
+    if(host.includes("frontapp") || host==="front.com") return "front";
+    if(host.includes("helpscout")) return "helpscout";
+
+    const parts=host.split(".");
+    return parts.length>=2 ? parts[parts.length-2] : host;
+  }catch(e){
+    return "conversation";
+  }
+}
+
+function error(message){
+  document.getElementById("loading").innerHTML="⚠ "+message;
+  document.getElementById("count").textContent="";
+}
+
+function load(){
+  const callback="sheetJSONP_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+
+  window[callback]=function(data){
+    try{
+      const table=data && data.table;
+      if(!table) throw new Error("Google Sheets returned no table");
+
+      const cols=table.cols || [];
+      const tableRows=table.rows || [];
+
+      // Google Visualization can omit trailing column metadata.
+      // Preserve the actual width of every returned row and at least A:H.
+      const widest=Math.max(
+        8,
+        cols.length,
+        ...tableRows.map(r => Array.isArray(r.c) ? r.c.length : 0)
+      );
+
+      const values = tableRows.map(r=>{
+        const cells=Array.isArray(r.c) ? r.c : [];
+        return Array.from({length:widest},(_,i)=>{
+          const cell=cells[i];
+          if(!cell) return "";
+          return cell.f ?? cell.v ?? "";
+        });
+      });
+
+      // Row 1 of the Google Sheet is the table header.
+      // Do not use A/B/C... or Google Visualization column metadata.
+      const firstNonEmpty = values.findIndex(row =>
+        row.some(cell=>String(cell).trim()!=="")
+      );
+
+      if(firstNonEmpty === -1){
+        headers=[];
+        rows=[];
+      }else{
+        const headerRow = values[firstNonEmpty];
+
+        // Normal columns are shown only when row 1 has a header.
+        // Column G (index 6) is special: it is never shown as a normal
+        // table column. It is exposed through the expandable chevron.
+        const columns = headerRow
+          .map((value,i)=>({ index:i, header:String(value).trim() }))
+          .filter(column=>column.header !== "" && column.index !== 6);
+
+        headers = columns.map(column=>({
+          index:column.index,
+          label:column.header,
+          __expand:false
+        }));
+
+        // Always enable the G detail column when the sheet contains column H.
+        // This keeps the chevron visible even before H has a header/value.
+        if(widest > 6){
+          headers.push({
+            index:6,
+            label:String(headerRow[6] || "Details").trim() || "Details",
+            __expand:true
+          });
+        }
+
+        rows = values
+          .slice(firstNonEmpty+1)
+          .filter(row =>
+            row.some(cell=>String(cell).trim()!=="")
+          );
+      }
+
+      renderHeaders();
+      render(rows);
+      document.getElementById("loading").style.display="none";
+    }catch(e){
+      console.error(e);
+      error(e.message);
+    }finally{
+      delete window[callback];
+      document.getElementById("google-sheet-jsonp")?.remove();
+    }
+  };
+
+  const tqx="out:json;responseHandler:"+callback;
+  const url=
+    "https://docs.google.com/spreadsheets/d/"+SHEET_ID+
+    "/gviz/tq?gid="+encodeURIComponent(GID)+
+    "&tqx="+encodeURIComponent(tqx);
+
+  const script=document.createElement("script");
+  script.id="google-sheet-jsonp";
+  script.src=url;
+  script.onerror=()=>error("Google Sheets could not be reached");
+  document.head.appendChild(script);
+}
+
+function setupToggles(){
+  const assetsToggle=document.getElementById("assetsToggle");
+  const assetsCard=document.getElementById("assetsCard");
+  const expand=document.getElementById("expandAssets");
+
+  assetsToggle.addEventListener("click",()=>{
+    const open=assetsToggle.getAttribute("aria-expanded")==="true";
+    assetsToggle.setAttribute("aria-expanded",String(!open));
+    assetsToggle.textContent=open?"›":"⌄";
+    assetsCard.style.display=open?"none":"block";
+    expand.textContent=open?"EXPAND ALL":"COLLAPSE ALL";
+  });
+
+  expand.addEventListener("click",()=>{
+    const details=[...assetsCard.querySelectorAll(".asset-details")];
+    const buttons=[...assetsCard.querySelectorAll(".asset-chevron")];
+    const shouldOpen=details.some(d=>!d.classList.contains("open"));
+
+    details.forEach(d=>d.classList.toggle("open",shouldOpen));
+    buttons.forEach(b=>{
+      b.setAttribute("aria-expanded",String(shouldOpen));
+    });
+    expand.textContent=shouldOpen?"COLLAPSE ALL":"EXPAND ALL";
+  });
+
+  assetsCard.querySelectorAll(".asset-row").forEach(row=>{
+    row.addEventListener("click",()=>{
+      const details=row.nextElementSibling;
+      const button=row.querySelector(".asset-chevron");
+      const open=details.classList.toggle("open");
+      button.setAttribute("aria-expanded",String(open));
+    });
+  });
+
+  const issuesToggle=document.getElementById("issuesToggle");
+  const issuesSection=document.querySelector(".issues-section");
+  issuesToggle.addEventListener("click",()=>{
+    const open=issuesToggle.getAttribute("aria-expanded")==="true";
+    issuesToggle.setAttribute("aria-expanded",String(!open));
+    issuesToggle.textContent=open?"›":"⌄";
+    [...issuesSection.children].forEach((child,i)=>{
+      if(i>0) child.style.display=open?"none":"";
+    });
+  });
+}
+
+setupToggles();
+load();
+</script>
+</body>
+</html>
